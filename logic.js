@@ -16,24 +16,28 @@ async  function sendToBackground() {
 }
 
 function sendToGPT(tone) {
-    var pointsV = document.getElementsByClassName("Am")[0].textContent
-    var topicV = document.getElementById(":fa").value
-    var toneV = tone
+    let composes = document.getElementsByClassName("Am").length
 
-    var output = "http://127.0.0.1:8001/userprompt:Write me an email. Topic: " + topicV + ", Tone: " + toneV + ", Key Points: " + pointsV;
+    for (let i = 0; i < composes; i++) {
+        var pointsV = document.getElementsByClassName("Am")[i].textContent
+        var topicV = document.getElementsByClassName("aoI")[i].ariaLabel
+        var toneV = tone
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", output, true);
-    xhr.responseType = 'text'
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send();
+        var output = "http://127.0.0.1:8001/userprompt:Write me an email. Topic: " + topicV + ", Tone: " + toneV + ", Key Points: " + pointsV;
 
-    xhr.onload = function () {
-        if (xhr.readyState === xhr.DONE) {
-            if (xhr.status === 200) {
-                let response = xhr.responseText
-                document.getElementsByClassName("Am")[0].innerHTML = response
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", output, true);
+        xhr.responseType = 'text'
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send();
+
+        xhr.onload = function () {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    let response = xhr.responseText
+                    document.getElementsByClassName("Am")[i].innerHTML = response
+                }
             }
-        }
-    };
+        };
+    }
 }
