@@ -1,0 +1,56 @@
+body {
+    width: 400px;
+    padding: 10px;
+    background-color: #36c1da;
+}
+
+H1 {
+    color: black;
+    padding-bottom: 0px;
+    text-align: center;
+    padding-top: 0px;
+}
+
+input {
+    width: 200px;
+    height: 30px;
+    border-width: 1.5px;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-left: 5px;
+    margin-right: 25px;
+}
+
+select {
+    margin-top: 15px;
+    width: 170px;
+    height: 30px;
+    font-size: 20px;
+    padding: 0px;
+    border-radius: 8px;
+    border-width: 1.5px;
+}
+
+textarea {
+    width: 400px;
+    font-size: 20px;
+    height: 200px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-width: 1.5px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+button {
+    margin: 15px;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 0px;
+    border-radius: 50px;
+    border-width: 1.5px;
+}
+
+.button {
+    text-align: center;
+}
