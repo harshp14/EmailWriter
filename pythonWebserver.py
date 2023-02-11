@@ -4,7 +4,7 @@ import openai
 from os import environ
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
-    openai.organization = "org-xn9INTDZvZTMow9VvxtaayoD"
+    openai.organization = "OpernAI Organization "
     openai.api_key = environ.get("OpenAIKey")
 
     def do_GET(self):
