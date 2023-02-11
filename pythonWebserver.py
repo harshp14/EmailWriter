@@ -1,11 +1,11 @@
 import http.server
 import socketserver
-#import openai
+import openai
+from os import environ
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
-    #APIKEY = "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"
-    #openai.organization = "org-xn9INTDZvZTMow9VvxtaayoD"
-    #openai.api_key = APIKEY
+    openai.organization = "org-xn9INTDZvZTMow9VvxtaayoD"
+    openai.api_key = environ.get("OpenAIKey")
 
     def do_GET(self):
         self.send_response(200)
@@ -19,10 +19,10 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         url = url.replace("%20", " ")
 
         #Send whatever inputs were supplied to a database table
-
-        #response = openai.Completion.create(model="text-davinci-003", prompt=url, temperature=0, max_tokens=2000)
-        #self.wfile.write(bytes(response.choices[0].text, "utf8"))
-        self.wfile.write(bytes(url, "utf8"))
+        print("Response")
+        response = openai.Completion.create(model="text-davinci-003", prompt=url, temperature=0, max_tokens=2000)
+        self.wfile.write(bytes(response.choices[0].text, "utf8"))
+        #self.wfile.write(bytes(url, "utf8"))
 
 handler_object = MyHttpRequestHandler
 PORT = 8001

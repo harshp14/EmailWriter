@@ -15,15 +15,16 @@ async  function sendToBackground() {
     });
 }
 
-function sendToGPT(tone) {
+function sendToGPT() {
+    console.log("This")
     let composes = document.getElementsByClassName("Am").length
 
     for (let i = 0; i < composes; i++) {
         var pointsV = document.getElementsByClassName("Am")[i].textContent
         var topicV = document.getElementsByClassName("aoI")[i].ariaLabel
-        var toneV = tone
+        document.getElementsByClassName("Am")[i].innerHTML = "response"
 
-        var output = "http://127.0.0.1:8001/userprompt:Write me an email. Topic: " + topicV + ", Tone: " + toneV + ", Key Points: " + pointsV;
+        var output = "http://127.0.0.1:8001/userprompt:Write me an email. Topic: " + topicV + ", Key Points: " + pointsV;
 
         const xhr = new XMLHttpRequest();
         xhr.open("GET", output, true);
@@ -41,3 +42,10 @@ function sendToGPT(tone) {
         };
     }
 }
+
+chrome.action.onClicked.addListener((tab) => {
+    chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        function: sendToGPT
+    });
+})
